@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px #0000001a;
+            display: inline-block;
+        }
+        select, input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px #0000001a;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Resume Analyzer</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="job_field">Select Job Category:</label>
+        <select name="job_field" id="job_field">
+            <option value="Data Science">Data Science</option>
+            <option value="Software Engineer">Software Engineer</option>
+            <option value="Full Stack Developer">Full Stack Developer</option>
+            <option value="Data Analytics">Data Analytics</option>
+        </select>
+
+        <label for="resume">Upload Your Resume:</label>
+        <input type="file" name="resume" id="resume" required>
+
+        <button type="submit">Analyze Resume</button>
+    </form>
+
+    {% if predicted_category %}
+        <h2>ML Predicted Job Category: {{ predicted_category }}</h2>
+    {% endif %}
+
+    {% if suitability %}
+        <h2>Suitability: {{ suitability }}</h2>
+        <p>{{ advice }}</p>
+    {% endif %}
+</body>
+</html>
